@@ -10,10 +10,10 @@ export const meta = {
 
 const ic = (body) => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
 const FEATURES = [
-  [ic('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/>'), 'Project window', 'Inspector, track list, event display and a lower zone with mixer, key editor and sample editor. Tools sit on keys 1–0.'],
+  [ic('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/>'), 'Project window', 'Inspector, track list, event display and a lower zone with mixer, piano roll and sample editor. Tools sit on keys 1–0.'],
   [ic('<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3" fill="currentColor"/>'), 'Recording', 'Audio and MIDI with cycle takes, punch in/out, count-in, take lanes and comping.'],
   [ic('<path d="M6 4v16M12 4v16M18 4v16"/><rect x="4" y="12" width="4" height="3" rx="1"/><rect x="10" y="7" width="4" height="3" rx="1"/><rect x="16" y="14" width="4" height="3" rx="1"/>'), 'Mixer', 'Channel strips with input stage, pre-filters, EQ, pre- and post-fader inserts, sends, solo modes and peak hold.'],
-  [ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v8M11 5v8M15 5v8M19 5v8"/>'), 'Editors', 'Key editor, quantize, sample editor, plus fade and crossfade editors.'],
+  [ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v8M11 5v8M15 5v8M19 5v8"/>'), 'Editors', 'Piano roll, quantize, sample editor, plus fade and crossfade editors.'],
   [ic('<path d="M3 17c3 0 4-10 7-10s3 6 5 6 2-4 6-4"/>'), 'Automation', 'Read and write, tempo track and time signatures, plugin delay compensation.'],
   [ic('<path d="M9 3v4M15 3v4"/><rect x="5" y="7" width="14" height="8" rx="2"/><path d="M12 15v6"/>'), 'Plugins: CLAP &amp; LV2', 'Instruments and effects, with their state saved in the project. Scanning runs in separate processes and blocks crashing plugins.'],
   [ic('<path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/>'), 'Export', 'Render in place, freeze tracks, stem export and audio mixdown to WAV, FLAC or AIFF.'],
@@ -38,7 +38,7 @@ export function body(base) {
       <a class="btn btn-wine btn-lg" href="${L.download}">${icon.download()}<span>Download for free</span></a>
       <a class="btn btn-ghost btn-lg" href="${SITE.repo}" rel="noopener">${icon.github()}<span>View on GitHub</span></a>
     </div>
-    <p class="hero-note">Linux · Windows · macOS — interface currently in German</p>
+    <p class="hero-note">Linux · Windows · macOS</p>
     <div class="hero-shot">${appFrame(screen(base, 'project-window', () => projectWindow({ seed: 7 }), 'The StudioCraft project window'))}</div>
   </div>
 </section>
@@ -80,10 +80,10 @@ export function body(base) {
     <div>
       ${kicker('Editors')}
       <h2 class="h2">Notes, takes and fades under control.</h2>
-      <p class="lead">In the key editor you edit MIDI note by note and quantize to the grid. Takes from cycle recordings land in their own lanes and become the best version through comping.</p>
+      <p class="lead">In the piano roll you edit MIDI note by note and quantize to the grid. Takes from cycle recordings land in their own lanes and become the best version through comping.</p>
       ${textLink(`${L.features}#editors`, 'See the editors')}
     </div>
-    <div>${appFrame(screen(base, 'key-editor', () => keyEditor({ seed: 11 }), 'The StudioCraft key editor'))}</div>
+    <div>${appFrame(screen(base, 'key-editor', () => keyEditor({ seed: 11 }), 'The StudioCraft piano roll'))}</div>
   </div>
   <div class="wrap">
     <div class="counter-strip">

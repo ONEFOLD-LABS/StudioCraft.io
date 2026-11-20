@@ -2,7 +2,7 @@
 // tokens (crates/ui/src/theme.rs). They stand in for real screenshots until those are added:
 // drop a PNG with the same name into src/screens/ and it will be used instead (see README).
 
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -300,6 +300,12 @@ function wrapSvg(W, H, body, label) {
 const here = dirname(fileURLToPath(import.meta.url));
 export const artFiles = new Map();
 
+/** Width and height of a PNG file, read from its header. */
+function pngSize(file) {
+  const b = readFileSync(file);
+  return [b.readUInt32BE(16), b.readUInt32BE(20)];
+}
+
 /**
  * Picture of the app. If src/screens/<key>.png (a real screenshot) exists, that is used;
  * otherwise the SVG drawing is written to assets/screens/<key>.svg.
@@ -308,7 +314,8 @@ export function screen(base, key, draw, alt) {
   const png = join(here, 'screens', `${key}.png`);
   if (existsSync(png)) {
     artFiles.set(`${key}.png`, { copy: png });
-    return `<img class="screen-img" src="${base}assets/screens/${key}.png" alt="${alt}" width="1600" height="900" loading="lazy" decoding="async">`;
+    const [w, h] = pngSize(png);
+    return `<img class="screen-img is-real" src="${base}assets/screens/${key}.png" alt="${alt}" width="${w}" height="${h}" loading="lazy" decoding="async">`;
   }
   artFiles.set(`${key}.svg`, { svg: draw() });
   return `<img class="screen-img" src="${base}assets/screens/${key}.svg" alt="${alt}" width="1600" height="900" loading="lazy" decoding="async">`;
