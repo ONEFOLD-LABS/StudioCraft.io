@@ -39,7 +39,7 @@ export function body(base) {
   <div class="detail" id="project-window">
     <div><span class="num">01</span><h2>Project window</h2></div>
     <div class="body">
-      <p>On the left, the inspector with the settings of the selected track; next to it the track list and the event display with ruler. At the bottom, the lower zone with mixer, key editor and sample editor. Transport bar with F2, mixer window with F3.</p>
+      <p>On the left, the inspector with the settings of the selected track; next to it the track list and the event display with ruler. At the bottom, the lower zone with mixer, piano roll and sample editor. Transport bar with F2, mixer window with F3.</p>
       <p>Exactly one tool is active; the number keys select it directly:</p>
       <div class="table-wrap" style="margin-top:20px">
         <table>
@@ -70,9 +70,9 @@ export function body(base) {
   <div class="detail" id="editors">
     <div><span class="num">04</span><h2>Editors</h2></div>
     <div class="body">
-      <p>The key editor shows MIDI notes on a keyboard with velocities below. Quantize aligns notes to the grid, the sample editor works directly on the waveform, and fade and crossfade editors shape transitions.</p>
-      ${pills(['Key editor', 'Quantize', 'Sample editor', 'Fade editor', 'Crossfade editor', 'List editor'])}
-      ${appFrame(screen(base, 'key-editor', () => keyEditor({ seed: 11 }), 'The StudioCraft key editor'), 'Key editor with keyboard, notes and velocities')}
+      <p>The piano roll shows MIDI notes on a keyboard with velocities below. Quantize aligns notes to the grid, the sample editor works directly on the waveform, and fade and crossfade editors shape transitions.</p>
+      ${pills(['Piano roll', 'Quantize', 'Sample editor', 'Fade editor', 'Crossfade editor', 'List editor'])}
+      ${appFrame(screen(base, 'key-editor', () => keyEditor({ seed: 11 }), 'The StudioCraft piano roll'), 'Piano roll with keyboard, notes and velocity lane')}
     </div>
   </div>
 
@@ -81,7 +81,7 @@ export function body(base) {
     <div class="body">
       <p>Every channel has an input stage, pre-filters, EQ, pre- and post-fader inserts and sends. Solo modes, peak hold, saved mixer views and input and output busses round off the mixer.</p>
       ${pills(['Input stage', 'Pre-filter', 'EQ', 'Inserts pre/post', 'Sends', 'Solo modes', 'Peak hold', 'Mixer views', 'Busses'])}
-      ${appFrame(screen(base, 'mixer', () => mixerWindow({ seed: 3 }), 'The StudioCraft mixer'), 'Mixer window with channel strips and level meters')}
+      ${appFrame(screen(base, 'mixer', () => mixerWindow({ seed: 3 }), 'The StudioCraft mixer'), 'Mixer in the lower zone with channel strips, inserts and EQ')}
     </div>
   </div>
 
