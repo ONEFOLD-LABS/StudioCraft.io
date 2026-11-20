@@ -1,0 +1,8 @@
+StudioCraft website
+Copyright (c) 2026 StudioCraft contributors
+Licensed under MIT OR Apache-2.0.
+
+Third-party components shipped with the built site:
+
+- Ubuntu and Ubuntu Mono fonts (via @fontsource/ubuntu, @fontsource/ubuntu-mono)
+  Licensed under the Ubuntu Font Licence 1.0.
