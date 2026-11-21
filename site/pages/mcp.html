@@ -1,0 +1,121 @@
+title: AI Agents & MCP – StudioCraft
+description: StudioCraft ships an MCP server for AI agents: create projects, import audio, place notes and render mixdowns – headless or in the running app.
+path: mcp/
+active: mcp
+---
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="kicker">AI agents &amp; MCP</p>
+    <h1>Let an AI agent produce with you.</h1>
+    <p class="lead"><code>studiocraft-cli mcp</code> exposes StudioCraft through the Model Context Protocol. Agents such as Claude Code, Claude Desktop, Codex or Cursor create projects, edit them, save them and render mixdowns.</p>
+    <div class="hero-actions">
+      <a class="btn btn-wine btn-lg" href="#setup"><span>Set up</span>{{icon:arrow}}</a>
+      <a class="btn btn-ghost btn-lg" href="{{site.repo}}/blob/main/docs/mcp.md" rel="noopener"><span>Full documentation</span>{{icon:external}}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Two modes</p>
+      <h2 class="h2">Headless or in the running app.</h2>
+      <p class="lead">In both cases the tools run through the same code as the app: undo history, import, saving and mixdown behave exactly the same.</p>
+    </div>
+    <div class="two-cards">
+      <article class="card mode-card">
+        <p class="label">headless · default</p>
+        <h3>A project without a window</h3>
+        <p>The server keeps its own project window in memory – without a screen and without an audio device. Ideal for scripts and automation.</p>
+        
+<div class="code-box">
+  <div class="code-head"><span>Terminal</span></div>
+  <pre><code>studiocraft-cli mcp \
+  --automation-read-root ~/Music/Samples \
+  --automation-write-root ~/Music/Projects</code></pre>
+</div>
+      </article>
+      <article class="card mode-card">
+        <p class="label">--connect</p>
+        <h3>The agent works in your app</h3>
+        <p>The app opens a local control channel with its own token. You see every change immediately and can undo it with Ctrl+Z.</p>
+        
+<div class="code-box">
+  <div class="code-head"><span>Two terminals</span></div>
+  <pre><code>studiocraft --control 7850
+studiocraft-cli mcp --connect 7850 \
+  --automation-read-root ~/Music/Projects \
+  --automation-write-root ~/Music/Projects</code></pre>
+</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="setup">
+  <div class="wrap split">
+    <div>
+      <p class="kicker">Setup</p>
+      <h2 class="h2">Connected in a minute.</h2>
+      <p class="lead">Register the MCP server in your client once – done. Errors and notices go to stderr; stdout carries protocol messages only.</p>
+      <a class="text-link" href="{{site.repo}}/blob/main/docs/mcp.md" rel="noopener"><span>More clients and options</span>{{icon:external}}</a>
+    </div>
+    <div>
+      
+<div class="code-box">
+  <div class="code-head"><span>Claude Code</span></div>
+  <pre><code>claude mcp add studiocraft -- /path/to/studiocraft-cli mcp \
+  --automation-read-root /work/project \
+  --automation-write-root /work/project</code></pre>
+</div>
+      
+<div class="code-box">
+  <div class="code-head"><span>.mcp.json / claude_desktop_config.json</span></div>
+  <pre><code>{"mcpServers": {"studiocraft": {
+  "command": "/path/to/studiocraft-cli",
+  "args": ["mcp",
+    "--automation-read-root", "/work/project",
+    "--automation-write-root", "/work/project"]}}}</code></pre>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Tools</p>
+      <h2 class="h2">What an agent can do.</h2>
+      <p class="lead">Positions count like the ruler (<code>5.1.1.0</code> = bar 5), 960 ticks per quarter note. Errors come back as a tool result, never as a crash.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+        <tbody><tr><td><code>inspect_project</code></td><td>Whole project: tempo, time signature, locators, markers, tracks with events</td></tr><tr><td><code>get_notes</code></td><td>Notes of a MIDI part</td></tr><tr><td><code>new_project · open_project · save_project</code></td><td>Create, open and save project files</td></tr><tr><td><code>import_audio · import_midi</code></td><td>Audio file onto a track, standard MIDI file as MIDI tracks</td></tr><tr><td><code>export_mixdown · export_midi</code></td><td>Locator range as 24-bit WAV, FLAC or AIFF; MIDI file</td></tr><tr><td><code>add_track · set_track</code></td><td>Add a track; name, fader, pan, mute, solo</td></tr><tr><td><code>create_part · add_notes</code></td><td>Create a MIDI part, add or replace notes</td></tr><tr><td><code>move_event · split_event · delete_events</code></td><td>Move, copy, split and delete events</td></tr><tr><td><code>set_tempo · add_marker · set_locators</code></td><td>Tempo and time signature, markers, locators</td></tr><tr><td><code>undo · redo</code></td><td>History – every edit is one undo step</td></tr><tr><td><code>transport</code></td><td>Only with --connect: play, stop, set cursor</td></tr><tr><td><code>ui_screenshot · ui_inspect · ui_click</code></td><td>Only with --connect: view the window, read and click controls</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <p class="kicker">Security</p>
+      <h2 class="h2">The agent stays in its folders.</h2>
+      <p class="lead">The server only starts with defined read and write folders. Every path is checked before anything is opened or saved.</p>
+      <ul class="checks">
+        <li>{{icon:check}}<span><code>--automation-read-root</code>: reading is allowed here</span></li>
+        <li>{{icon:check}}<span><code>--automation-write-root</code>: writing is allowed here</span></li>
+        <li>{{icon:check}}<span>Control channel on 127.0.0.1 only, with a new token on every start</span></li>
+        <li>{{icon:check}}<span>An unknown flag is an error – never an open server</span></li>
+      </ul>
+    </div>
+    <div class="notice">
+      <div>
+        <strong>Limits of this version</strong>
+        <p style="margin-top:8px">Headless mode loads no plugins and has no playback or recording; the mixdown renders without plugins. Key presses, dragging and scrolling are still missing, as are mixer routing, sends, inserts and automation as tools. Details in the <a href="{{site.repo}}/blob/main/docs/mcp.md" rel="noopener">MCP documentation</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>

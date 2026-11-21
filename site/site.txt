@@ -1,0 +1,5 @@
+# Values for {{site.KEY}} in layout and pages.
+name = StudioCraft
+version = 0.7.0
+repo = https://github.com/ONEFOLD-LABS/StudioCraft
+donate = https://ko-fi.com/onefoldlabs

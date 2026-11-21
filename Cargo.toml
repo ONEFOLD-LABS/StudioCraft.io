@@ -1,0 +1,10 @@
+[package]
+name = "studiocraft-website"
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT OR Apache-2.0"
+description = "Builds the static StudioCraft website from site/ into dist/"
+publish = false
+
+[dependencies]

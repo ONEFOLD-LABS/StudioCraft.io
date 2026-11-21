@@ -1,0 +1,10 @@
+# Inline SVG icons: `name size class body` (class `-` for none) or `name size raw <svg …>`
+# with {{size}} for the size. Used in pages as {{icon:name}} or {{icon:name:size}}.
+download 18 - <path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/>
+arrow 18 i-arrow <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+external 16 i-ext <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+menu 22 i-open <path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>
+close 22 i-close <path d="m6 6 12 12"/><path d="M18 6 6 18"/>
+heart 18 i-heart <path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>
+check 16 - <path d="m5 12 5 5L20 7"/>
+github 18 raw <svg class="icon" width="{{size}}" height="{{size}}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
