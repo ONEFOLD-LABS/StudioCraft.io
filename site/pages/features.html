@@ -1,32 +1,12 @@
-import { SITE, kicker, textLink } from '../layout.mjs';
-import { screen, appFrame, projectWindow, mixerWindow, keyEditor } from '../art.mjs';
+title: Features – StudioCraft
+description: Project window, track types, recording, editors, mixer, automation, plugins and export: an overview of every StudioCraft feature.
+path: features/
+active: features
+---
 
-export const meta = {
-  path: 'features/',
-  active: 'features',
-  title: 'Features – StudioCraft',
-  description: 'Project window, track types, recording, editors, mixer, automation, plugins and export: an overview of every StudioCraft feature.',
-};
-
-const pills = (items) => `<ul class="pill-list">${items.map((t) => `<li>${t}</li>`).join('')}</ul>`;
-
-export function body(base) {
-  const tools = [
-    ['1', 'Object selection', 'Select, move and resize events'],
-    ['2', 'Range selection', 'Time range across several tracks'],
-    ['3', 'Split', 'Split an event at the position'],
-    ['4', 'Glue', 'Join an event with the next one'],
-    ['5', 'Erase', 'Delete events'],
-    ['6', 'Zoom', 'Zoom in and out'],
-    ['7', 'Mute', 'Mute or unmute events'],
-    ['8', 'Draw', 'Create parts and notes'],
-    ['9', 'Play', 'Listen from a position, scrub'],
-    ['0', 'Time warp', 'Drag beats onto the grid'],
-  ];
-  return `
 <section class="page-hero">
   <div class="wrap">
-    ${kicker('Features')}
+    <p class="kicker">Features</p>
     <h1>A complete studio in one window.</h1>
     <p class="lead">StudioCraft follows a proven DAW workflow: create tracks, record, edit, mix and export. Here is everything that already works today.</p>
     <nav class="jump" aria-label="Sections">
@@ -44,10 +24,15 @@ export function body(base) {
       <div class="table-wrap" style="margin-top:20px">
         <table>
           <thead><tr><th>Key</th><th>Tool</th><th>Used for</th></tr></thead>
-          <tbody>${tools.map(([k, t, d]) => `<tr><th scope="row"><code>${k}</code></th><td>${t}</td><td>${d}</td></tr>`).join('')}</tbody>
+          <tbody><tr><th scope="row"><code>1</code></th><td>Object selection</td><td>Select, move and resize events</td></tr><tr><th scope="row"><code>2</code></th><td>Range selection</td><td>Time range across several tracks</td></tr><tr><th scope="row"><code>3</code></th><td>Split</td><td>Split an event at the position</td></tr><tr><th scope="row"><code>4</code></th><td>Glue</td><td>Join an event with the next one</td></tr><tr><th scope="row"><code>5</code></th><td>Erase</td><td>Delete events</td></tr><tr><th scope="row"><code>6</code></th><td>Zoom</td><td>Zoom in and out</td></tr><tr><th scope="row"><code>7</code></th><td>Mute</td><td>Mute or unmute events</td></tr><tr><th scope="row"><code>8</code></th><td>Draw</td><td>Create parts and notes</td></tr><tr><th scope="row"><code>9</code></th><td>Play</td><td>Listen from a position, scrub</td></tr><tr><th scope="row"><code>0</code></th><td>Time warp</td><td>Drag beats onto the grid</td></tr></tbody>
         </table>
       </div>
-      ${appFrame(screen(base, 'project-window', () => projectWindow({ seed: 7 }), 'The StudioCraft project window'), 'Project window with inspector, track list, event display and mixer in the lower zone')}
+      
+<figure class="app-frame">
+  <div class="app-frame-bar"><span></span><span></span><span></span></div>
+  {{screen:project-window|The StudioCraft project window}}
+  <figcaption>Project window with inspector, track list, event display and mixer in the lower zone</figcaption>
+</figure>
     </div>
   </div>
 
@@ -55,7 +40,7 @@ export function body(base) {
     <div><span class="num">02</span><h2>Track types</h2></div>
     <div class="body">
       <p>Every track has a type and its own colour, which new events and the mixer channel inherit. The track header shows mute, solo, record enable, monitor and automation at a glance.</p>
-      ${pills(['Audio', 'Instrument', 'MIDI', 'Group', 'FX channel', 'Folder', 'Marker', 'Tempo &amp; time signature'])}
+      <ul class="pill-list"><li>Audio</li><li>Instrument</li><li>MIDI</li><li>Group</li><li>FX channel</li><li>Folder</li><li>Marker</li><li>Tempo &amp; time signature</li></ul>
     </div>
   </div>
 
@@ -63,7 +48,7 @@ export function body(base) {
     <div><span class="num">03</span><h2>Recording</h2></div>
     <div class="body">
       <p>Audio and MIDI are recorded straight into the tracks. In cycle mode, several takes stack on top of each other, and you assemble the best version from them by comping.</p>
-      ${pills(['Cycle takes', 'Punch in / punch out', 'Count-in', 'Take lanes', 'Comping', 'MIDI recording'])}
+      <ul class="pill-list"><li>Cycle takes</li><li>Punch in / punch out</li><li>Count-in</li><li>Take lanes</li><li>Comping</li><li>MIDI recording</li></ul>
     </div>
   </div>
 
@@ -71,8 +56,13 @@ export function body(base) {
     <div><span class="num">04</span><h2>Editors</h2></div>
     <div class="body">
       <p>The piano roll shows MIDI notes on a keyboard with velocities below. Quantize aligns notes to the grid, the sample editor works directly on the waveform, and fade and crossfade editors shape transitions.</p>
-      ${pills(['Piano roll', 'Quantize', 'Sample editor', 'Fade editor', 'Crossfade editor', 'List editor'])}
-      ${appFrame(screen(base, 'key-editor', () => keyEditor({ seed: 11 }), 'The StudioCraft piano roll'), 'Piano roll with keyboard, notes and velocity lane')}
+      <ul class="pill-list"><li>Piano roll</li><li>Quantize</li><li>Sample editor</li><li>Fade editor</li><li>Crossfade editor</li><li>List editor</li></ul>
+      
+<figure class="app-frame">
+  <div class="app-frame-bar"><span></span><span></span><span></span></div>
+  {{screen:key-editor|The StudioCraft piano roll}}
+  <figcaption>Piano roll with keyboard, notes and velocity lane</figcaption>
+</figure>
     </div>
   </div>
 
@@ -80,8 +70,13 @@ export function body(base) {
     <div><span class="num">05</span><h2>Mixer</h2></div>
     <div class="body">
       <p>Every channel has an input stage, pre-filters, EQ, pre- and post-fader inserts and sends. Solo modes, peak hold, saved mixer views and input and output busses round off the mixer.</p>
-      ${pills(['Input stage', 'Pre-filter', 'EQ', 'Inserts pre/post', 'Sends', 'Solo modes', 'Peak hold', 'Mixer views', 'Busses'])}
-      ${appFrame(screen(base, 'mixer', () => mixerWindow({ seed: 3 }), 'The StudioCraft mixer'), 'Mixer in the lower zone with channel strips, inserts and EQ')}
+      <ul class="pill-list"><li>Input stage</li><li>Pre-filter</li><li>EQ</li><li>Inserts pre/post</li><li>Sends</li><li>Solo modes</li><li>Peak hold</li><li>Mixer views</li><li>Busses</li></ul>
+      
+<figure class="app-frame">
+  <div class="app-frame-bar"><span></span><span></span><span></span></div>
+  {{screen:mixer|The StudioCraft mixer}}
+  <figcaption>Mixer in the lower zone with channel strips, inserts and EQ</figcaption>
+</figure>
     </div>
   </div>
 
@@ -89,7 +84,7 @@ export function body(base) {
     <div><span class="num">06</span><h2>Automation &amp; tempo</h2></div>
     <div class="body">
       <p>Parameters can be read and written as curves. The tempo track supports fixed and variable tempos as well as time signature changes. Plugin delay compensation keeps every track in time.</p>
-      ${pills(['Automation read/write', 'Tempo track', 'Time signatures', 'Delay compensation'])}
+      <ul class="pill-list"><li>Automation read/write</li><li>Tempo track</li><li>Time signatures</li><li>Delay compensation</li></ul>
     </div>
   </div>
 
@@ -97,7 +92,7 @@ export function body(base) {
     <div><span class="num">07</span><h2>Plugins</h2></div>
     <div class="body">
       <p>StudioCraft loads instruments and effects in CLAP and LV2 format. Their state is saved with the project. The plugin scan runs in separate processes: if a plugin crashes, it is blocked instead of taking the program down with it.</p>
-      ${pills(['CLAP', 'LV2', 'Instruments', 'Effects', 'safe plugin scan'])}
+      <ul class="pill-list"><li>CLAP</li><li>LV2</li><li>Instruments</li><li>Effects</li><li>safe plugin scan</li></ul>
       <p class="small" style="margin-top:14px">LV2 requires <code>lilv</code> to be installed; without lilv, LV2 plugins are simply not offered.</p>
     </div>
   </div>
@@ -106,7 +101,7 @@ export function body(base) {
     <div><span class="num">08</span><h2>Export</h2></div>
     <div class="body">
       <p>Render tracks in place, freeze them, export stems or save the whole song as a mixdown.</p>
-      ${pills(['Render in place', 'Freeze track', 'Stem export', 'WAV', 'FLAC', 'AIFF', 'MIDI export'])}
+      <ul class="pill-list"><li>Render in place</li><li>Freeze track</li><li>Stem export</li><li>WAV</li><li>FLAC</li><li>AIFF</li><li>MIDI export</li></ul>
     </div>
   </div>
 
@@ -114,9 +109,8 @@ export function body(base) {
     <div><span class="num">09</span><h2>Projects</h2></div>
     <div class="body">
       <p>A project is a folder containing a <code>.studiocraft</code> file in an open JSON format plus the audio files. Autosave and crash recovery protect your work. Dark and light appearance can be switched.</p>
-      ${pills(['open JSON format', 'autosave', 'crash recovery', 'dark &amp; light theme'])}
-      <div style="margin-top:24px">${textLink(SITE.spec, 'Full specification of the workflow', 'ext')}</div>
+      <ul class="pill-list"><li>open JSON format</li><li>autosave</li><li>crash recovery</li><li>dark &amp; light theme</li></ul>
+      <div style="margin-top:24px"><a class="text-link" href="{{site.repo}}/blob/main/docs/spec.md" rel="noopener"><span>Full specification of the workflow</span>{{icon:external}}</a></div>
     </div>
   </div>
-</section>`;
-}
+</section>

@@ -1,34 +1,12 @@
-import { SITE, kicker, textLink, codeBox } from '../layout.mjs';
+title: Audio Engine & Platforms – StudioCraft
+description: The StudioCraft real-time audio engine: audio hosts per system, plugin hosting for CLAP and LV2, and its building blocks in Rust.
+path: engine/
+active: engine
+---
 
-export const meta = {
-  path: 'engine/',
-  active: 'engine',
-  title: 'Audio Engine & Platforms – StudioCraft',
-  description: 'The StudioCraft real-time audio engine: audio hosts per system, plugin hosting for CLAP and LV2, and its building blocks in Rust.',
-};
-
-export function body(base) {
-  const hosts = [
-    ['Linux', 'PipeWire (default), ALSA; JACK with <code>--features jack</code>'],
-    ['Windows', 'WASAPI (shared mode); ASIO only in your own build with <code>--features asio</code>'],
-    ['macOS', 'CoreAudio; JACK with <code>--features jack</code>'],
-    ['FreeBSD', 'ALSA via OSS; PipeWire and JACK as features'],
-    ['Web', 'Web Audio, selected automatically'],
-  ];
-  const parts = [
-    ['apps/studiocraft', 'Desktop app (eframe/egui)'],
-    ['apps/studiocraft-cli', 'Command line for tests and scripts, with MCP server'],
-    ['crates/project', 'Project model, edits, tempo map, versioned file format'],
-    ['crates/engine', 'Real-time audio: transport, mixing and routing, recording, MIDI, export'],
-    ['crates/plugin-host', 'Plugin hosting for CLAP and LV2'],
-    ['crates/graph', 'Signal graph helpers'],
-    ['crates/ui', 'Project window, mixer, editors, menus, theme, settings'],
-    ['crates/automation', 'MCP server for AI agents'],
-  ];
-  return `
 <section class="page-hero">
   <div class="wrap">
-    ${kicker('Audio engine')}
+    <p class="kicker">Audio engine</p>
     <h1>Real-time audio, Rust all the way through.</h1>
     <p class="lead">Transport, mixing, routing, recording, MIDI and export run in a dedicated engine. It talks to your computer's audio system and hosts your plugins.</p>
     <nav class="jump" aria-label="Sections"><a href="#hosts">Audio hosts</a><a href="#plugins">Plugins</a><a href="#architecture">Architecture</a><a href="#build">Build it yourself</a></nav>
@@ -38,14 +16,14 @@ export function body(base) {
 <section class="section tint" id="hosts">
   <div class="wrap split">
     <div>
-      ${kicker('Audio hosts')}
+      <p class="kicker">Audio hosts</p>
       <h2 class="h2">The right audio system for each platform.</h2>
       <p class="lead">Choose the host with <code>--audio-host &lt;name&gt;</code>. <code>studiocraft --list-hosts</code> shows what is included in a given build.</p>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>System</th><th>Audio hosts</th></tr></thead>
-        <tbody>${hosts.map(([s, h]) => `<tr><th scope="row">${s}</th><td>${h}</td></tr>`).join('')}</tbody>
+        <tbody><tr><th scope="row">Linux</th><td>PipeWire (default), ALSA; JACK with <code>--features jack</code></td></tr><tr><th scope="row">Windows</th><td>WASAPI (shared mode); ASIO only in your own build with <code>--features asio</code></td></tr><tr><th scope="row">macOS</th><td>CoreAudio; JACK with <code>--features jack</code></td></tr><tr><th scope="row">FreeBSD</th><td>ALSA via OSS; PipeWire and JACK as features</td></tr><tr><th scope="row">Web</th><td>Web Audio, selected automatically</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -54,7 +32,7 @@ export function body(base) {
 <section class="section" id="plugins">
   <div class="wrap">
     <div class="section-head">
-      ${kicker('Plugins')}
+      <p class="kicker">Plugins</p>
       <h2 class="h2">CLAP and LV2 – hosted reliably.</h2>
     </div>
     <div class="feature-grid">
@@ -68,14 +46,14 @@ export function body(base) {
 <section class="section tint" id="architecture">
   <div class="wrap">
     <div class="section-head">
-      ${kicker('Architecture')}
+      <p class="kicker">Architecture</p>
       <h2 class="h2">Clearly separated building blocks.</h2>
       <p class="lead">Rust only, no Electron or Tauri. The interface uses egui/eframe, audio input and output go through cpal.</p>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Path</th><th>Purpose</th></tr></thead>
-        <tbody>${parts.map(([p, d]) => `<tr><td><code>${p}</code></td><td>${d}</td></tr>`).join('')}</tbody>
+        <tbody><tr><td><code>apps/studiocraft</code></td><td>Desktop app (eframe/egui)</td></tr><tr><td><code>apps/studiocraft-cli</code></td><td>Command line for tests and scripts, with MCP server</td></tr><tr><td><code>crates/project</code></td><td>Project model, edits, tempo map, versioned file format</td></tr><tr><td><code>crates/engine</code></td><td>Real-time audio: transport, mixing and routing, recording, MIDI, export</td></tr><tr><td><code>crates/plugin-host</code></td><td>Plugin hosting for CLAP and LV2</td></tr><tr><td><code>crates/graph</code></td><td>Signal graph helpers</td></tr><tr><td><code>crates/ui</code></td><td>Project window, mixer, editors, menus, theme, settings</td></tr><tr><td><code>crates/automation</code></td><td>MCP server for AI agents</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -84,16 +62,28 @@ export function body(base) {
 <section class="section" id="build">
   <div class="wrap split">
     <div>
-      ${kicker('Build it yourself')}
+      <p class="kicker">Build it yourself</p>
       <h2 class="h2">Start from source.</h2>
       <p class="lead">Requires Rust 1.85 or newer. On Linux you also need the ALSA and PipeWire development files and <code>clang</code>.</p>
-      ${textLink(SITE.platformDoc, 'Platforms and packages in detail', 'ext')}
+      <a class="text-link" href="{{site.repo}}/blob/main/docs/plattformen.md" rel="noopener"><span>Platforms and packages in detail</span>{{icon:external}}</a>
     </div>
     <div>
-      ${codeBox('Build and run', 'cargo build --release\ncargo run --release -p studiocraft')}
-      ${codeBox('Open audio files directly', 'cargo run --release -p studiocraft -- a.wav b.wav')}
-      ${codeBox('Same checks as CI', 'cargo xtask ci')}
+      
+<div class="code-box">
+  <div class="code-head"><span>Build and run</span></div>
+  <pre><code>cargo build --release
+cargo run --release -p studiocraft</code></pre>
+</div>
+      
+<div class="code-box">
+  <div class="code-head"><span>Open audio files directly</span></div>
+  <pre><code>cargo run --release -p studiocraft -- a.wav b.wav</code></pre>
+</div>
+      
+<div class="code-box">
+  <div class="code-head"><span>Same checks as CI</span></div>
+  <pre><code>cargo xtask ci</code></pre>
+</div>
     </div>
   </div>
-</section>`;
-}
+</section>
