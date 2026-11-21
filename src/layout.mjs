@@ -15,6 +15,7 @@ SITE.mcpDoc = `${SITE.repo}/blob/main/docs/mcp.md`;
 SITE.platformDoc = `${SITE.repo}/blob/main/docs/plattformen.md`;
 SITE.agents = `${SITE.repo}/blob/main/AGENTS.md`;
 SITE.notice = `${SITE.repo}/blob/main/NOTICE`;
+SITE.donate = 'https://ko-fi.com/onefoldlabs';
 
 /* ---------- icons (stroke icons, 24 grid) ---------- */
 const svg = (size, body, cls = '') =>
@@ -27,6 +28,7 @@ export const icon = {
   external: (s = 16) => svg(s, '<path d="M7 17 17 7"/><path d="M8 7h9v9"/>', 'i-ext'),
   menu: (s = 22) => svg(s, '<path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>', 'i-open'),
   close: (s = 22) => svg(s, '<path d="m6 6 12 12"/><path d="M18 6 6 18"/>', 'i-close'),
+  heart: (s = 18) => svg(s, '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>', 'i-heart'),
   check: (s = 16) => svg(s, '<path d="m5 12 5 5L20 7"/>'),
 };
 
@@ -65,13 +67,14 @@ export function header(base, active) {
     <a class="brand" href="${L.home}">${logo(base, 32)}<span>Studio<b>Craft</b></span></a>
     <nav class="main-nav" aria-label="Main navigation">${navLinks}</nav>
     <div class="header-actions">
+      <a class="btn btn-ghost btn-sm" href="${SITE.donate}" rel="noopener">${icon.heart()}<span>Support</span></a>
       <a class="btn btn-ghost btn-sm" href="${SITE.repo}" rel="noopener">${icon.github()}<span>GitHub</span></a>
       <a class="btn btn-wine btn-sm" href="${L.download}">${icon.download()}<span>Download</span></a>
     </div>
     <details class="mobile-nav">
       <summary class="menu-toggle" aria-label="Menu"><span>Menu</span>${icon.menu()}${icon.close()}</summary>
       <nav class="mobile-menu" aria-label="Menu">
-        <div class="mobile-links">${navLinks}<a href="${SITE.repo}" rel="noopener">GitHub</a></div>
+        <div class="mobile-links">${navLinks}<a href="${SITE.repo}" rel="noopener">GitHub</a><a href="${SITE.donate}" rel="noopener">Support ${SITE.name}</a></div>
         <a class="btn btn-wine" href="${L.download}">${icon.download()}<span>Download StudioCraft</span></a>
       </nav>
     </details>
@@ -115,7 +118,7 @@ export function footer(base) {
       </div>
       ${col('Program', [['Features', L.features], ['Audio engine', L.engine], ['AI &amp; MCP', L.mcp], ['Download', L.download]])}
       ${col('Documentation', [['Workflow spec', SITE.spec], ['MCP server', SITE.mcpDoc], ['Platforms', SITE.platformDoc], ['Releases', SITE.releases]])}
-      ${col('Get involved', [['GitHub', SITE.repo], ['Issues', SITE.issues], ['Contributing', SITE.contributing], ['Notes for AI agents', SITE.agents]])}
+      ${col('Get involved', [['Support on Ko-fi', SITE.donate], ['GitHub', SITE.repo], ['Issues', SITE.issues], ['Contributing', SITE.contributing], ['Notes for AI agents', SITE.agents]])}
     </div>
     <div class="footer-bottom">
       <p>StudioCraft is an independent, private open-source project, developed clean-room.</p>
